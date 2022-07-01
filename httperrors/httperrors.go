@@ -1,6 +1,9 @@
 package httperrors
 
-import "net/http"
+import (
+	"log"
+	"net/http"
+)
 
 // HTTPError define data struct
 type HTTPError struct {
@@ -20,6 +23,7 @@ func NewHTTPError(statusCode int, msg, err string) *HTTPError {
 
 // NewInternalServerError return HTTPError with InternalServerError info
 func NewInternalServerError(msg string, err error) *HTTPError {
+	log.Println(err.Error())
 	return NewHTTPError(http.StatusInternalServerError, msg, "InternalServerError")
 }
 
